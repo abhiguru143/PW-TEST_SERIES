@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Added by MadXABhi --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by MadXABhi -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizard - Free Online Practice Tests for JEE and NEET</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #333;
+            --background-color: #f0f0f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ddd;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(5deg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        h1 span {
+            color: var(--secondary-color);
+        }
+        nav {
+            background-color: #19285e;
+            color: white;
+            padding: 1rem;
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: auto;
+            display: grid;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            transform-style: preserve-3d;
+        }
+        .category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateZ(20px);
+            transition: all 0.3s ease;
+        }
+        .category:hover {
+            transform: translateZ(30px) scale(1.05);
+        }
+        .category h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .category a {
+            text-decoration: none;
+            color: black;
+            font-size: 17px;
+        }
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            transform: rotateX(-5deg);
+            transform-origin: bottom;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+        .social-links {
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        .social-links svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+        .main h3 {
+            color: blueviolet;
+            margin-left: 20px;
+            margin-bottom: 0;
+        }
+        .telegram-float {
+            position: sticky;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+            float: right;
+        }
+        .telegram-float p {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transform: perspective(1000px) rotateX(10deg);
+            transition: transform 0.3s ease;
+        }
+        .telegram-float p:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.05);
+        }
+        .telegram-float p span {
+            display: inline-block;
+            animation: wave 1s infinite;
+            animation-delay: calc(0.1s * var(--i));
+            color: #0088cc;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        .telegram-float a {
+            background-color: #0088cc;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .telegram-float a:hover {
+            transform: translateY(-5px);
+        }
+        .telegram-float a svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .telegram-float {
+                bottom: 10px;
+                right: 10px;
+            }
+            .telegram-float p {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+            .telegram-float a {
+                width: 50px;
+                height: 50px;
+            }
+            .telegram-float a svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        .announcement-container {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            font-size: 16px; /* Base font size */
+        }
+
+        .announcement-container p {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .announcement-icon {
+            font-size: 2em; /* Relative to container's font size */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: inline-block;
+            animation: pulse 1s infinite;
+        }
+
+        .announcement-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .announcement-box {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .announcement-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .announcement-container {
+                font-size: 14px;
+                left: 10px;
+                bottom: 10px;
+            }
+
+            .announcement-box {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-container {
+                font-size: 12px;
+            }
+
+            .announcement-box {
+                width: 180px;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span>Q</span>uizard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">JEE</a></li>
+            <li><a href="#">NEET</a></li>
+            <li><a href="#">Dropper</a></li>
+            <li><a href="#">Other Exams</a></li>
+        </ul>
+    </nav>
+    <main class="main">
+        
+        <div class="category" id="jee">
+          <h2>JEE Practice Tests</h2>
+          <h3>For 11<sup>th</sup></h3>
+          <ul>
+            
+              
+                <li><a href="batch/65ddb1c691431f0018a11f4a/Arjuna%20JEE%202.html">Arjuna JEE 2.0 2025</a></li>
+              
+                <li><a href="batch/65d86238cdb6ea00181bdcfe/Arjuna%20JEE%202025.html">Arjuna JEE 2025</a></li>
+              
+                <li><a href="batch/63fc5bce692ade0018aa43da/Arjuna%20JEE%202.html">Arjuna JEE 2.0 2024</a></li>
+              
+                <li><a href="batch/63faf32217735c00182ada5b/Arjuna%20JEE%202024.html">Arjuna JEE 2024</a></li>
+              
+            
+          </ul>
+          <h3>For 12<sup>th</sup></h3>
+          <ul>
+            
+              
+                <li><a href="batch/65d862392b1da90018ad8f3b/Lakshya%20JEE%202025.html">Lakshya JEE 2025</a></li>
+              
+                <li><a href="batch/65ddb1c61c60f30018f2b893/Lakshya%20JEE%202.html">Lakshya JEE 2.0 2025</a></li>
+              
+                <li><a href="batch/63fc49ff5376bb01699a69d5/Lakshya%20JEE%202024.html">Lakshya JEE 2024</a></li>
+              
+            
+          </ul>
+        </div>
+      
+        <div class="category" id="neet">
+          <h2>NEET Practice Tests</h2>
+          <h3>For 11<sup>th</sup></h3>
+          <ul>
+            
+              
+                <li><a href="batch/65d749530531c20018ad953b/Arjuna%20NEET%202025.html">Arjuna NEET 2025</a></li>
+              
+                <li><a href="batch/65ddb1c5c8969e0018c0b5e8/Arjuna%20NEET%202.html">Arjuna NEET 2.0 2025</a></li>
+              
+            
+          </ul>
+          <h3>For 12<sup>th</sup></h3>
+          <ul>
+            
+              
+                <li><a href="batch/65d75d320531c20018ade9bb/Lakshya%20NEET%202025.html">Lakshya NEET 2025</a></li>
+              
+            
+          </ul>
+        </div>
+      
+        <div class="category" id="dropper">
+          <h2>Dropper Practice Tests</h2>
+          <h3>Dropper JEE Tests</h3>
+          <ul>
+            
+              
+                <li><a href="batch/65d86238fb2810001895eab8/Prayas%20JEE%202025.html">Prayas JEE 2025</a></li>
+              
+                <li><a href="batch/65ddb1c67520b70018241fe9/Prayas%20JEE%202.html">Prayas JEE 2.0 2025</a></li>
+              
+            
+          </ul>
+          <h3>Dropper NEET Practice Tests</h3>
+          <ul>
+            
+              
+                <li><a href="batch/6489711d65dfc900181ac63e/Yakeen%20NEET%203.html">Yakeen NEET 3.0 2024</a></li>
+              
+                <li><a href="batch/63fc57995afeaf0018c9a4b1/Yakeen%20NEET%202024.html">Yakeen NEET 2024</a></li>
+              
+                <li><a href="batch/63fc58ed46bb3f00189d3c6d/Yakeen%20NEET%202.html">Yakeen NEET 2.0 2024</a></li>
+              
+                <li><a href="batch/65ddb1c46914ab001880f19a/Yakeen%20NEET%202.html">Yakeen NEET 2.0 2025</a></li>
+              
+                <li><a href="batch/65d7711b0de2ba001844bbab/Yakeen%20NEET%202025.html">Yakeen NEET 2025</a></li>
+              
+            
+          </ul>
+        </div>
+      
+        <div class="category" id="other">
+          <h2>Other Exams</h2>
+          <ul>
+            
+              
+                <li><a href="batch/64c7a459c1549000181b863c/NDA%20Shaurya%201.html">NDA Shaurya 1.0 2024</a></li>
+              
+                <li><a href="batch/65cca91e2c506d0018eeb8eb/NDA%20Shaurya%202.html">NDA Shaurya 2.0, 2024</a></li>
+              
+            
+          </ul>
+        </div>
+      </main>
+    <div class="telegram-float">
+        <p><span>J</span><span>o</span><span>i</span><span>n</span><span> &nbsp;</span><span>u</span><span>s</span></p>
+        <a href="../external.html?link=https://t.me/+5fxF6FcmAnJjZmM1" target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M9.94 15.14l-.38 4.1c.54 0 .78-.23 1.06-.5l2.54-2.36 5.28 3.88c.97.54 1.67.26 1.92-.9L24 3.64c.34-1.57-.56-2.22-1.5-1.85L1.57 9.33c-1.52.58-1.5 1.4-.26 1.78l5.6 1.75L19.77 6.5c.65-.42 1.24-.2.75.27z"/>
+            </svg>
+        </a>
+    </div>
+    <footer>
+        <p>&copy; 2024 Quizard. All rights reserved.</p>
+        <div class="social-links">
+            <!-- Social links here -->
+        </div>
+    </footer>
+    
+     <div class="announcement-container">
+<!--         <p>Announcement</p> -->
+        <div class="announcement-icon">📢</div>
+        <div class="announcement-box">
+            <h3>Announcements</h3>
+            <p>Must join Telegram Channel For Updates of Web !!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const url = window.location.href.split('#')[0] + targetId;
+                    window.open(url, '_blank');
+                });
+            });
+
+            const joinUsText = document.querySelector('.telegram-float p');
+            joinUsText.innerHTML = joinUsText.textContent.split('').map((char, i) => 
+                `<span style="--i:${i}">${char}</span>`
+            ).join('');
+
+            const announcementIcon = document.querySelector('.announcement-icon');
+            const announcementBox = document.querySelector('.announcement-box');
+
+            // Function to toggle the announcement box
+            function toggleAnnouncementBox() {
+                announcementBox.style.display = announcementBox.style.display === 'none' ? 'block' : 'none';
+            }
+
+            // Show the announcement box by default
+            announcementBox.style.display = 'block';
+
+            announcementIcon.addEventListener('click', toggleAnnouncementBox);
+
+            document.addEventListener('click', function(event) {
+                if (!announcementIcon.contains(event.target) && !announcementBox.contains(event.target)) {
+                    announcementBox.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
